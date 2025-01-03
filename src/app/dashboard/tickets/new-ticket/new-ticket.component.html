@@ -1,7 +1,10 @@
 <form (ngSubmit) = "onSubmit(
   titleInput.value,
-  TextInput.value)
-  ">
+  TextInput.value,
+  form
+  )
+ 
+  "  #form>
     <app-control label="Title" >
       <input name="title" id="title" #titleInput/>
     </app-control>
@@ -20,3 +23,7 @@
       </button>
     </p>
   </form>
+
+
+
+

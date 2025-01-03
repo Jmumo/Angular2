@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, output, Output } from '@angular/core';
 import { ButtonComponent } from '../../../shared/button/button.component';
 import { ControlComponent } from "../../../shared/control/control.component";
 import { FormsModule } from '@angular/forms';
+import { Ticket } from './ticket.model';
+
 
 @Component({
   selector: 'app-new-ticket',
@@ -12,12 +14,17 @@ import { FormsModule } from '@angular/forms';
 })
 export class NewTicketComponent {
 
+  // @Output() add = new EventEmitter()
 
-  text = ""
+  add = output<{title:string,text:string}>()
 
-onSubmit(title : String,
-         textArea : String
+
+onSubmit(title : string,
+         textArea : string,
+         form:HTMLFormElement
 ){
-  console.log(title ,textArea)
+  this.add.emit({title : title, text : textArea})
+  form.reset()
 }
+
 }
