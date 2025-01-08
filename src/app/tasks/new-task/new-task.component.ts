@@ -1,6 +1,7 @@
 import { Component, ElementRef, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TaskService } from '../tasks.Service';
+import { TaskStatus } from '../task.model';
 
 @Component({
   selector: 'app-new-task',
@@ -21,5 +22,10 @@ export class NewTaskComponent {
 
     this.taskService.onAddTask({title:title,description:description})
     this.formEl()?.nativeElement.reset();
+  }
+
+
+  updateTaskStatus(taskId : string , newStatus : TaskStatus){
+       this.taskService.tasks.update((oldtasks)=>oldtasks.map((task) =>task.id === taskId ? {...task, status : newStatus}: task))
   }
 }
