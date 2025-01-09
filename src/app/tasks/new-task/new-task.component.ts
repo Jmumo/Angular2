@@ -14,18 +14,13 @@ export class NewTaskComponent {
   private formEl = viewChild<ElementRef<HTMLFormElement>>('form');
 
   constructor(private taskService: TaskService){
-
   }
 
   onAddTask(title: string, description: string) {
-
-
     this.taskService.onAddTask({title:title,description:description})
     this.formEl()?.nativeElement.reset();
   }
 
 
-  updateTaskStatus(taskId : string , newStatus : TaskStatus){
-       this.taskService.tasks.update((oldtasks)=>oldtasks.map((task) =>task.id === taskId ? {...task, status : newStatus}: task))
-  }
+
 }
