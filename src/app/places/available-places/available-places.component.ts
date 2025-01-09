@@ -21,6 +21,8 @@ export class AvailablePlacesComponent implements OnInit {
 
   isFetching = signal(false)
 
+  error = signal('')
+
   ngOnInit(): void {
     this.isFetching.set(true)
     const subscription = this.httpClient.get<{places: Place[]}>("http://localhost:3000/places",{
@@ -33,6 +35,9 @@ export class AvailablePlacesComponent implements OnInit {
       next : (places) => {
         
         this.places.set(places)
+      },
+      error: (error) =>{
+        this.error.set(error.message)
       },
       complete: ()=>{
         this.isFetching.set(false)
